@@ -1,0 +1,33 @@
+import tkinter as tk
+import random
+import time
+
+class Speedometer:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Electronic Speedometer")
+
+        self.speed_var = tk.StringVar()
+        self.speed_var.set("0 km/h")
+
+        self.label = tk.Label(root, textvariable=self.speed_var, font=("Helvetica", 48), bg="black", fg="white")
+        self.label.pack(expand=True)
+
+        self.update_speed()
+
+    def update_speed(self):
+        # Simulate speed readings with random values
+        speed = random.randint(0, 120)  # Random speed between 0 and 120 km/h
+        self.speed_var.set(f"{speed} km/h")
+        
+        # Schedule the update_speed method to be called again after 1 second
+        self.root.after(1000, self.update_speed)
+
+# Create the main window
+root = tk.Tk()
+
+# Create the speedometer instance
+speedometer = Speedometer(root)
+
+# Run the application
+root.mainloop()
